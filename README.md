@@ -1,10 +1,8 @@
-<div align="center">
+<h1 align="center">InsightData Analyst</h1>
 
-# InsightData Analyst
+<p align="center"><strong>RAG-Enhanced SQL Agent · Powered by Local LLM</strong></p>
 
-**RAG-Enhanced SQL Agent · Powered by Local LLM**
-
-Ask questions about your database in plain language — no cloud, no data leaks
+<p align="center">Ask questions about your database in plain language — no cloud, no data leaks</p>
 
 ---
 
@@ -23,7 +21,7 @@ The agent does not guess the database structure. It retrieves actual table schem
 
 ## How It Works
 
-**1. Retrieval** — The user's question is used to search Qdrant for the most relevant table schemas (by vector similarity).
+**1. Retrieval** — The user's question is used to search Qdrant for the most relevant table schemas by vector similarity.
 
 **2. Generation** — The model receives the schema context and generates a SQL query via LangGraph.
 
@@ -102,6 +100,10 @@ The agent does not guess the database structure. It retrieves actual table schem
   - 📄 requirements.txt
   - 📄 .env.example
 
+---
+
+## Quick Start
+
 **Prerequisites:** [Docker](https://docs.docker.com/get-docker/) & [Ollama](https://ollama.com/)
 
 **1. Pull the model**
@@ -142,15 +144,11 @@ docker exec -it insight_app python -m pytest -s tests/test_agent.py
 ---
 ---
 
-<div align="center">
+<h1 align="center">InsightData Analyst</h1>
 
-# InsightData Analyst
+<p align="center"><strong>RAG-агент для SQL · На базе локальной LLM</strong></p>
 
-**RAG-агент для SQL · На базе локальной LLM**
-
-Задавайте вопросы к базе данных на естественном языке — без облака, без утечек данных
-
-</div>
+<p align="center">Задавайте вопросы к базе данных на естественном языке — без облака, без утечек данных</p>
 
 ---
 
@@ -164,7 +162,7 @@ docker exec -it insight_app python -m pytest -s tests/test_agent.py
 
 ## Как это работает
 
-**1. Retrieval** — Вопрос пользователя используется для поиска релевантных схем таблиц в Qdrant (по векторному сходству).
+**1. Retrieval** — Вопрос пользователя используется для поиска релевантных схем таблиц в Qdrant по векторному сходству.
 
 **2. Generation** — Модель получает контекст схем и генерирует SQL-запрос через LangGraph.
 
@@ -242,6 +240,10 @@ docker exec -it insight_app python -m pytest -s tests/test_agent.py
   - ⚙️ entrypoint.sh
   - 📄 requirements.txt
   - 📄 .env.example
+
+---
+
+## Быстрый старт
 
 **Требования:** [Docker](https://docs.docker.com/get-docker/) & [Ollama](https://ollama.com/)
 
