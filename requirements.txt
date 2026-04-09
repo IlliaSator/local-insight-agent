@@ -1,0 +1,29 @@
+# --- Использование CPU версии для стабильной сборки ---
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+# UI
+streamlit
+
+# Core ML & Embeddings
+torch
+torchvision
+sentence-transformers
+transformers
+langchain==0.2.0
+langchain-community==0.2.0
+langgraph>=0.0.50
+pydantic>=2.0
+
+# Database & Data Processing
+sqlalchemy>=2.0
+psycopg2-binary
+pandas
+qdrant-client
+
+# LLM & Tools
+ollama
+fastapi
+uvicorn
+python-dotenv
+pytest
+pytest-mock

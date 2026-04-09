@@ -1,0 +1,31 @@
+```gitignore
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.venv/
+venv/
+ENV/
+env/
+
+# Docker & Infrastructure
+data/postgres/
+data/qdrant/
+.docker_logs/
+
+# Environment
+.env
+# (Не забудь оставить .env.example в репозитории)
+
+# IDEs
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+logs/
+*.log
