@@ -26,30 +26,32 @@ The core idea: the agent does not guess the database structure — it **retrieve
 ## Architecture
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                         USER QUESTION                           │
-│              "Which product has the highest sales?"             │
-└────────────────────────────┬────────────────────────────────────┘
-                             │
-                    ┌────────▼────────┐
-                    │  RAG RETRIEVAL  │  ← Qdrant Vector Store
-                    │  (table schemas)│     (schema embeddings)
-                    └────────┬────────┘
-                             │
-                    ┌────────▼────────┐
-                    │  SQL GENERATION │  ← Ollama (qwen2.5-coder)
-                    │   (LangGraph)   │     + schema context
-                    └────────┬────────┘
-                             │
-                    ┌────────▼────────┐
-                    │   EXECUTION     │  ← PostgreSQL 15
-                    │  (SQL Tool)     │
-                    └────────┬────────┘
-                             │
-                   ┌─────────▼─────────┐
-                   │  ERROR? ──► RETRY  │  up to 25 attempts
-                   │  OK? ──► RESULT   │  self-correction
-                   └───────────────────┘
+USER QUESTION
+"Which product has the highest sales?"
+         |
+         v
++------------------+
+|  RAG RETRIEVAL   |  <- Qdrant Vector Store (schema embeddings)
+|  (table schemas) |
++------------------+
+         |
+         v
++------------------+
+|  SQL GENERATION  |  <- Ollama qwen2.5-coder + schema context
+|   (LangGraph)    |
++------------------+
+         |
+         v
++------------------+
+|    EXECUTION     |  <- PostgreSQL 15
+|   (SQL Tool)     |
++------------------+
+         |
+         v
++------------------+
+| ERROR? --> RETRY |  up to 25 attempts / self-correction
+|  OK? --> RESULT  |
++------------------+
 ```
 
 **Retrieval → Generation → Execution → Verification** — each step is implemented as a node in the LangGraph graph.
@@ -87,48 +89,44 @@ The core idea: the agent does not guess the database structure — it **retrieve
 
 ```
 insight-data-analyst/
-|
-+-- assets/                      # Screenshots and static files
-+-- data/
-|   +-- processed/               # Processed datasets
-|   +-- raw/                     # Source CSV datasets (Olist)
-+-- docker/
-|   +-- postgres/                # PostgreSQL Docker config
-|   +-- qdrant/                  # Qdrant Docker config
-+-- notebooks/                   # Exploratory notebooks
-+-- scripts/
-|   +-- db_filler.py             # Populate DB from CSV
-|   +-- index_db.py              # Index schemas into Qdrant
-|
-+-- src/
-|   +-- api/
-|   |   +-- app.py               # Streamlit interface
-|   +-- core/
-|   |   +-- config.py            # Configuration
-|   |   +-- logger.py            # Logger setup
-|   +-- database/
-|   |   +-- postgres_client.py   # PostgreSQL client
-|   |   +-- vector_store.py      # Qdrant client
-|   +-- services/
-|   |   +-- agent/
-|   |   |   +-- graph.py         # LangGraph graph definition
-|   |   |   +-- state.py         # Agent state schema
+|-- assets/                    # Screenshots and static files
+|-- data/
+|   |-- processed/             # Processed datasets
+|   +-- raw/                   # Source CSV datasets (Olist)
+|-- docker/
+|   |-- postgres/              # PostgreSQL Docker config
+|   +-- qdrant/                # Qdrant Docker config
+|-- notebooks/                 # Exploratory notebooks
+|-- scripts/
+|   |-- db_filler.py           # Populate DB from CSV
+|   +-- index_db.py            # Index schemas into Qdrant
+|-- src/
+|   |-- api/
+|   |   +-- app.py             # Streamlit interface
+|   |-- core/
+|   |   |-- config.py          # Configuration
+|   |   +-- logger.py          # Logger setup
+|   |-- database/
+|   |   |-- postgres_client.py # PostgreSQL client
+|   |   +-- vector_store.py    # Qdrant client
+|   |-- services/
+|   |   |-- agent/
+|   |   |   |-- graph.py       # LangGraph graph definition
+|   |   |   +-- state.py       # Agent state schema
 |   |   +-- llm/
-|   |       +-- ollama_client.py # Ollama integration
-|   |       +-- prompts.py       # Prompt templates
+|   |       |-- ollama_client.py  # Ollama integration
+|   |       +-- prompts.py        # Prompt templates
 |   +-- tools/
-|       +-- sql_executor.py      # SQL execution tool
-|
-+-- tests/
-|   +-- test_agent.py            # Agent node tests
-|   +-- test_db.py               # Database query tests
-|
-+-- main.py                      # Entry point
-+-- Dockerfile                   # Application image build
-+-- docker-compose.yml           # Orchestration: app + postgres + qdrant
-+-- entrypoint.sh                # Auto-start script out of the box
-+-- requirements.txt             # Python dependencies
-+-- .env.example                 # Environment variable template
+|       +-- sql_executor.py    # SQL execution tool
+|-- tests/
+|   |-- test_agent.py          # Agent node tests
+|   +-- test_db.py             # Database query tests
+|-- main.py                    # Entry point
+|-- Dockerfile                 # Application image build
+|-- docker-compose.yml         # Orchestration: app + postgres + qdrant
+|-- entrypoint.sh              # Auto-start script out of the box
+|-- requirements.txt           # Python dependencies
++-- .env.example               # Environment variable template
 ```
 
 ---
@@ -149,7 +147,7 @@ ollama pull qwen2.5-coder:3b
 ### 2. Clone the repository and configure the environment
 
 ```bash
-git clone https://github.com/IlliaSator/insight-data-analyst.git
+git clone https://github.com/your-username/insight-data-analyst.git
 cd insight-data-analyst
 cp .env.example .env
 ```
@@ -214,6 +212,13 @@ The agent knows the real database structure via RAG — this eliminates typical 
 
 ---
 
+</div>
+
+<br/>
+<br/>
+
+---
+
 <div align="center">
 
 # 🔍 InsightData Analyst
@@ -236,30 +241,32 @@ The agent knows the real database structure via RAG — this eliminates typical 
 ## Архитектура
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                      ВОПРОС ПОЛЬЗОВАТЕЛЯ                        │
-│              "Какой товар продаётся лучше всего?"               │
-└────────────────────────────┬────────────────────────────────────┘
-                             │
-                    ┌────────▼────────┐
-                    │  RAG RETRIEVAL  │  ← Qdrant Vector Store
-                    │ (схемы таблиц) │     (эмбеддинги схем)
-                    └────────┬────────┘
-                             │
-                    ┌────────▼────────┐
-                    │  SQL GENERATION │  ← Ollama (qwen2.5-coder)
-                    │   (LangGraph)   │     + контекст схем
-                    └────────┬────────┘
-                             │
-                    ┌────────▼────────┐
-                    │   EXECUTION     │  ← PostgreSQL 15
-                    │  (SQL Tool)     │
-                    └────────┬────────┘
-                             │
-                   ┌─────────▼─────────┐
-                   │  ERROR? ──► RETRY  │  до 25 попыток
-                   │  OK? ──► RESULT   │  самокоррекция
-                   └───────────────────┘
+ВОПРОС ПОЛЬЗОВАТЕЛЯ
+"Какой товар продаётся лучше всего?"
+         |
+         v
++------------------+
+|  RAG RETRIEVAL   |  <- Qdrant Vector Store (эмбеддинги схем)
+|  (схемы таблиц)  |
++------------------+
+         |
+         v
++------------------+
+|  SQL GENERATION  |  <- Ollama qwen2.5-coder + контекст схем
+|   (LangGraph)    |
++------------------+
+         |
+         v
++------------------+
+|    EXECUTION     |  <- PostgreSQL 15
+|   (SQL Tool)     |
++------------------+
+         |
+         v
++------------------+
+| ERROR? --> RETRY |  до 25 попыток / самокоррекция
+|  OK? --> RESULT  |
++------------------+
 ```
 
 **Retrieval → Generation → Execution → Verification** — каждый шаг реализован как узел в графе LangGraph.
@@ -297,48 +304,44 @@ The agent knows the real database structure via RAG — this eliminates typical 
 
 ```
 insight-data-analyst/
-|
-+-- assets/                      # Скриншоты и статические файлы
-+-- data/
-|   +-- processed/               # Обработанные датасеты
-|   +-- raw/                     # Исходные CSV-датасеты (Olist)
-+-- docker/
-|   +-- postgres/                # Docker-конфиг PostgreSQL
-|   +-- qdrant/                  # Docker-конфиг Qdrant
-+-- notebooks/                   # Исследовательские ноутбуки
-+-- scripts/
-|   +-- db_filler.py             # Наполнение БД из CSV
-|   +-- index_db.py              # Индексация схем в Qdrant
-|
-+-- src/
-|   +-- api/
-|   |   +-- app.py               # Streamlit-интерфейс
-|   +-- core/
-|   |   +-- config.py            # Конфигурация
-|   |   +-- logger.py            # Логгер
-|   +-- database/
-|   |   +-- postgres_client.py   # Клиент PostgreSQL
-|   |   +-- vector_store.py      # Клиент Qdrant
-|   +-- services/
-|   |   +-- agent/
-|   |   |   +-- graph.py         # Определение графа LangGraph
-|   |   |   +-- state.py         # Схема состояния агента
+|-- assets/                    # Скриншоты и статические файлы
+|-- data/
+|   |-- processed/             # Обработанные датасеты
+|   +-- raw/                   # Исходные CSV-датасеты (Olist)
+|-- docker/
+|   |-- postgres/              # Docker-конфиг PostgreSQL
+|   +-- qdrant/                # Docker-конфиг Qdrant
+|-- notebooks/                 # Исследовательские ноутбуки
+|-- scripts/
+|   |-- db_filler.py           # Наполнение БД из CSV
+|   +-- index_db.py            # Индексация схем в Qdrant
+|-- src/
+|   |-- api/
+|   |   +-- app.py             # Streamlit-интерфейс
+|   |-- core/
+|   |   |-- config.py          # Конфигурация
+|   |   +-- logger.py          # Логгер
+|   |-- database/
+|   |   |-- postgres_client.py # Клиент PostgreSQL
+|   |   +-- vector_store.py    # Клиент Qdrant
+|   |-- services/
+|   |   |-- agent/
+|   |   |   |-- graph.py       # Определение графа LangGraph
+|   |   |   +-- state.py       # Схема состояния агента
 |   |   +-- llm/
-|   |       +-- ollama_client.py # Интеграция с Ollama
-|   |       +-- prompts.py       # Шаблоны промптов
+|   |       |-- ollama_client.py  # Интеграция с Ollama
+|   |       +-- prompts.py        # Шаблоны промптов
 |   +-- tools/
-|       +-- sql_executor.py      # Инструмент выполнения SQL
-|
-+-- tests/
-|   +-- test_agent.py            # Тесты узлов агента
-|   +-- test_db.py               # Тесты запросов к БД
-|
-+-- main.py                      # Точка входа
-+-- Dockerfile                   # Сборка образа приложения
-+-- docker-compose.yml           # Оркестрация: app + postgres + qdrant
-+-- entrypoint.sh                # Автозапуск "из коробки"
-+-- requirements.txt             # Зависимости Python
-+-- .env.example                 # Шаблон переменных окружения
+|       +-- sql_executor.py    # Инструмент выполнения SQL
+|-- tests/
+|   |-- test_agent.py          # Тесты узлов агента
+|   +-- test_db.py             # Тесты запросов к БД
+|-- main.py                    # Точка входа
+|-- Dockerfile                 # Сборка образа приложения
+|-- docker-compose.yml         # Оркестрация: app + postgres + qdrant
+|-- entrypoint.sh              # Автозапуск "из коробки"
+|-- requirements.txt           # Зависимости Python
++-- .env.example               # Шаблон переменных окружения
 ```
 
 ---
@@ -359,7 +362,7 @@ ollama pull qwen2.5-coder:3b
 ### 2. Клонировать репозиторий и настроить окружение
 
 ```bash
-git clone https://github.com/IlliaSator/insight-data-analyst.git
+git clone https://github.com/your-username/insight-data-analyst.git
 cd insight-data-analyst
 cp .env.example .env
 ```
