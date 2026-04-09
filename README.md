@@ -62,51 +62,45 @@ The agent does not guess the database structure. It retrieves actual table schem
 
 ## Project Structure
 
-```
-insight-data-analyst/
-├── assets/
-├── data/
-│   ├── processed/
-│   └── raw/
-├── docker/
-│   ├── postgres/
-│   └── qdrant/
-├── notebooks/
-├── scripts/
-│   ├── db_filler.py
-│   └── index_db.py
-├── src/
-│   ├── api/
-│   │   └── app.py
-│   ├── core/
-│   │   ├── config.py
-│   │   └── logger.py
-│   ├── database/
-│   │   ├── postgres_client.py
-│   │   └── vector_store.py
-│   ├── services/
-│   │   ├── agent/
-│   │   │   ├── graph.py
-│   │   │   └── state.py
-│   │   └── llm/
-│   │       ├── ollama_client.py
-│   │       └── prompts.py
-│   └── tools/
-│       └── sql_executor.py
-├── tests/
-│   ├── test_agent.py
-│   └── test_db.py
-├── main.py
-├── Dockerfile
-├── docker-compose.yml
-├── entrypoint.sh
-├── requirements.txt
-└── .env.example
-```
-
----
-
-## Quick Start
+- 📁 **insight-data-analyst/**
+  - 📁 assets/
+  - 📁 data/
+    - 📁 processed/
+    - 📁 raw/
+  - 📁 docker/
+    - 📁 postgres/
+    - 📁 qdrant/
+  - 📁 notebooks/
+  - 📁 scripts/
+    - 🐍 db_filler.py
+    - 🐍 index_db.py
+  - 📁 src/
+    - 📁 api/
+      - 🐍 app.py
+    - 📁 core/
+      - 🐍 config.py
+      - 🐍 logger.py
+    - 📁 database/
+      - 🐍 postgres_client.py
+      - 🐍 vector_store.py
+    - 📁 services/
+      - 📁 agent/
+        - 🐍 graph.py
+        - 🐍 state.py
+      - 📁 llm/
+        - 🐍 ollama_client.py
+        - 🐍 prompts.py
+    - 📁 tools/
+      - 🐍 sql_executor.py
+  - 📁 tests/
+    - 🐍 test_agent.py
+    - 🐍 test_db.py
+  - 🐍 main.py
+  - 🐳 Dockerfile
+  - 🐳 docker-compose.yml
+  - ⚙️ entrypoint.sh
+  - 📄 requirements.txt
+  - 📄 .env.example
 
 **Prerequisites:** [Docker](https://docs.docker.com/get-docker/) & [Ollama](https://ollama.com/)
 
@@ -117,7 +111,7 @@ ollama pull qwen2.5-coder:3b
 
 **2. Clone and configure**
 ```bash
-git clone https://github.com/illiaSator/insight-data-analyst.git
+git clone https://github.com/IlliaSator/insight-data-analyst.git
 cd insight-data-analyst
 cp .env.example .env
 ```
@@ -209,51 +203,45 @@ docker exec -it insight_app python -m pytest -s tests/test_agent.py
 
 ## Структура проекта
 
-```
-insight-data-analyst/
-├── assets/
-├── data/
-│   ├── processed/
-│   └── raw/
-├── docker/
-│   ├── postgres/
-│   └── qdrant/
-├── notebooks/
-├── scripts/
-│   ├── db_filler.py
-│   └── index_db.py
-├── src/
-│   ├── api/
-│   │   └── app.py
-│   ├── core/
-│   │   ├── config.py
-│   │   └── logger.py
-│   ├── database/
-│   │   ├── postgres_client.py
-│   │   └── vector_store.py
-│   ├── services/
-│   │   ├── agent/
-│   │   │   ├── graph.py
-│   │   │   └── state.py
-│   │   └── llm/
-│   │       ├── ollama_client.py
-│   │       └── prompts.py
-│   └── tools/
-│       └── sql_executor.py
-├── tests/
-│   ├── test_agent.py
-│   └── test_db.py
-├── main.py
-├── Dockerfile
-├── docker-compose.yml
-├── entrypoint.sh
-├── requirements.txt
-└── .env.example
-```
-
----
-
-## Быстрый старт
+- 📁 **insight-data-analyst/**
+  - 📁 assets/
+  - 📁 data/
+    - 📁 processed/
+    - 📁 raw/
+  - 📁 docker/
+    - 📁 postgres/
+    - 📁 qdrant/
+  - 📁 notebooks/
+  - 📁 scripts/
+    - 🐍 db_filler.py
+    - 🐍 index_db.py
+  - 📁 src/
+    - 📁 api/
+      - 🐍 app.py
+    - 📁 core/
+      - 🐍 config.py
+      - 🐍 logger.py
+    - 📁 database/
+      - 🐍 postgres_client.py
+      - 🐍 vector_store.py
+    - 📁 services/
+      - 📁 agent/
+        - 🐍 graph.py
+        - 🐍 state.py
+      - 📁 llm/
+        - 🐍 ollama_client.py
+        - 🐍 prompts.py
+    - 📁 tools/
+      - 🐍 sql_executor.py
+  - 📁 tests/
+    - 🐍 test_agent.py
+    - 🐍 test_db.py
+  - 🐍 main.py
+  - 🐳 Dockerfile
+  - 🐳 docker-compose.yml
+  - ⚙️ entrypoint.sh
+  - 📄 requirements.txt
+  - 📄 .env.example
 
 **Требования:** [Docker](https://docs.docker.com/get-docker/) & [Ollama](https://ollama.com/)
 
