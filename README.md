@@ -5,6 +5,7 @@
 ### RAG-Enhanced SQL Agent · Powered by Local LLM
 *Ask questions about your database in plain language — no cloud, no data leaks*
 
+
 ---
 
 ## About
@@ -70,15 +71,15 @@ The core idea: the agent does not guess the database structure — it **retrieve
 
 ## Tech Stack
 
-```
-LLM          │ Ollama · qwen2.5-coder:3b  (optimized for code generation)
-Agent        │ LangGraph · LangChain
-Database     │ PostgreSQL 15
-Vector Store │ Qdrant  (table schema embeddings)
-Frontend     │ Streamlit
-Testing      │ pytest
-Deploy       │ Docker · Docker Compose
-```
+| Layer | Technology |
+|---|---|
+| 🤖 LLM | Ollama · `qwen2.5-coder:3b` (optimized for code generation) |
+| 🧠 Agent | LangGraph · LangChain |
+| 🗄️ Database | PostgreSQL 15 |
+| 🔎 Vector Store | Qdrant (table schema embeddings) |
+| 🖥️ Frontend | Streamlit |
+| ✅ Testing | pytest |
+| 🐳 Deploy | Docker · Docker Compose |
 
 ---
 
@@ -86,48 +87,48 @@ Deploy       │ Docker · Docker Compose
 
 ```
 insight-data-analyst/
-│
-├── 📂 assets/                      # Screenshots and static files
-├── 📂 data/
-│   ├── 📂 processed/               # Processed datasets
-│   └── 📂 raw/                     # Source CSV datasets (Olist)
-├── 📂 docker/
-│   ├── 📂 postgres/                # PostgreSQL Docker config
-│   └── 📂 qdrant/                  # Qdrant Docker config
-├── 📂 notebooks/                   # Exploratory notebooks
-├── 📂 scripts/
-│   ├── 📄 db_filler.py             # Populate DB from CSV
-│   └── 📄 index_db.py              # Index schemas into Qdrant
-│
-├── 📂 src/
-│   ├── 📂 api/
-│   │   └── 📄 app.py               # Streamlit interface
-│   ├── 📂 core/
-│   │   ├── 📄 config.py            # Configuration
-│   │   └── 📄 logger.py            # Logger setup
-│   ├── 📂 database/
-│   │   ├── 📄 postgres_client.py   # PostgreSQL client
-│   │   └── 📄 vector_store.py      # Qdrant client
-│   ├── 📂 services/
-│   │   ├── 📂 agent/
-│   │   │   ├── 📄 graph.py         # LangGraph graph definition
-│   │   │   └── 📄 state.py         # Agent state schema
-│   │   └── 📂 llm/
-│   │       ├── 📄 ollama_client.py # Ollama integration
-│   │       └── 📄 prompts.py       # Prompt templates
-│   └── 📂 tools/
-│       └── 📄 sql_executor.py      # SQL execution tool
-│
-├── 📂 tests/
-│   ├── 📄 test_agent.py            # Agent node tests
-│   └── 📄 test_db.py               # Database query tests
-│
-├── 📄 main.py                      # Entry point
-├── 📄 Dockerfile                   # Application image build
-├── 📄 docker-compose.yml           # Orchestration: app + postgres + qdrant
-├── 📄 entrypoint.sh                # Auto-start script out of the box
-├── 📄 requirements.txt             # Python dependencies
-└── 📄 .env.example                 # Environment variable template
+|
++-- assets/                      # Screenshots and static files
++-- data/
+|   +-- processed/               # Processed datasets
+|   +-- raw/                     # Source CSV datasets (Olist)
++-- docker/
+|   +-- postgres/                # PostgreSQL Docker config
+|   +-- qdrant/                  # Qdrant Docker config
++-- notebooks/                   # Exploratory notebooks
++-- scripts/
+|   +-- db_filler.py             # Populate DB from CSV
+|   +-- index_db.py              # Index schemas into Qdrant
+|
++-- src/
+|   +-- api/
+|   |   +-- app.py               # Streamlit interface
+|   +-- core/
+|   |   +-- config.py            # Configuration
+|   |   +-- logger.py            # Logger setup
+|   +-- database/
+|   |   +-- postgres_client.py   # PostgreSQL client
+|   |   +-- vector_store.py      # Qdrant client
+|   +-- services/
+|   |   +-- agent/
+|   |   |   +-- graph.py         # LangGraph graph definition
+|   |   |   +-- state.py         # Agent state schema
+|   |   +-- llm/
+|   |       +-- ollama_client.py # Ollama integration
+|   |       +-- prompts.py       # Prompt templates
+|   +-- tools/
+|       +-- sql_executor.py      # SQL execution tool
+|
++-- tests/
+|   +-- test_agent.py            # Agent node tests
+|   +-- test_db.py               # Database query tests
+|
++-- main.py                      # Entry point
++-- Dockerfile                   # Application image build
++-- docker-compose.yml           # Orchestration: app + postgres + qdrant
++-- entrypoint.sh                # Auto-start script out of the box
++-- requirements.txt             # Python dependencies
++-- .env.example                 # Environment variable template
 ```
 
 ---
@@ -284,15 +285,15 @@ The agent knows the real database structure via RAG — this eliminates typical 
 
 ## Технологический стек
 
-```
-LLM          │ Ollama · qwen2.5-coder:3b  (оптимизирован под генерацию кода)
-Agent        │ LangGraph · LangChain
-Database     │ PostgreSQL 15
-Vector Store │ Qdrant  (хранение эмбеддингов схем таблиц)
-Frontend     │ Streamlit
-Testing      │ pytest
-Deploy       │ Docker · Docker Compose
-```
+| Слой | Технология |
+|---|---|
+| 🤖 LLM | Ollama · `qwen2.5-coder:3b` (оптимизирован под генерацию кода) |
+| 🧠 Agent | LangGraph · LangChain |
+| 🗄️ Database | PostgreSQL 15 |
+| 🔎 Vector Store | Qdrant (хранение эмбеддингов схем таблиц) |
+| 🖥️ Frontend | Streamlit |
+| ✅ Testing | pytest |
+| 🐳 Deploy | Docker · Docker Compose |
 
 ---
 
@@ -300,48 +301,48 @@ Deploy       │ Docker · Docker Compose
 
 ```
 insight-data-analyst/
-│
-├── 📂 assets/                      # Скриншоты и статические файлы
-├── 📂 data/
-│   ├── 📂 processed/               # Обработанные датасеты
-│   └── 📂 raw/                     # Исходные CSV-датасеты (Olist)
-├── 📂 docker/
-│   ├── 📂 postgres/                # Docker-конфиг PostgreSQL
-│   └── 📂 qdrant/                  # Docker-конфиг Qdrant
-├── 📂 notebooks/                   # Исследовательские ноутбуки
-├── 📂 scripts/
-│   ├── 📄 db_filler.py             # Наполнение БД из CSV
-│   └── 📄 index_db.py              # Индексация схем в Qdrant
-│
-├── 📂 src/
-│   ├── 📂 api/
-│   │   └── 📄 app.py               # Streamlit-интерфейс
-│   ├── 📂 core/
-│   │   ├── 📄 config.py            # Конфигурация
-│   │   └── 📄 logger.py            # Логгер
-│   ├── 📂 database/
-│   │   ├── 📄 postgres_client.py   # Клиент PostgreSQL
-│   │   └── 📄 vector_store.py      # Клиент Qdrant
-│   ├── 📂 services/
-│   │   ├── 📂 agent/
-│   │   │   ├── 📄 graph.py         # Определение графа LangGraph
-│   │   │   └── 📄 state.py         # Схема состояния агента
-│   │   └── 📂 llm/
-│   │       ├── 📄 ollama_client.py # Интеграция с Ollama
-│   │       └── 📄 prompts.py       # Шаблоны промптов
-│   └── 📂 tools/
-│       └── 📄 sql_executor.py      # Инструмент выполнения SQL
-│
-├── 📂 tests/
-│   ├── 📄 test_agent.py            # Тесты узлов агента
-│   └── 📄 test_db.py               # Тесты запросов к БД
-│
-├── 📄 main.py                      # Точка входа
-├── 📄 Dockerfile                   # Сборка образа приложения
-├── 📄 docker-compose.yml           # Оркестрация: app + postgres + qdrant
-├── 📄 entrypoint.sh                # Автозапуск "из коробки"
-├── 📄 requirements.txt             # Зависимости Python
-└── 📄 .env.example                 # Шаблон переменных окружения
+|
++-- assets/                      # Скриншоты и статические файлы
++-- data/
+|   +-- processed/               # Обработанные датасеты
+|   +-- raw/                     # Исходные CSV-датасеты (Olist)
++-- docker/
+|   +-- postgres/                # Docker-конфиг PostgreSQL
+|   +-- qdrant/                  # Docker-конфиг Qdrant
++-- notebooks/                   # Исследовательские ноутбуки
++-- scripts/
+|   +-- db_filler.py             # Наполнение БД из CSV
+|   +-- index_db.py              # Индексация схем в Qdrant
+|
++-- src/
+|   +-- api/
+|   |   +-- app.py               # Streamlit-интерфейс
+|   +-- core/
+|   |   +-- config.py            # Конфигурация
+|   |   +-- logger.py            # Логгер
+|   +-- database/
+|   |   +-- postgres_client.py   # Клиент PostgreSQL
+|   |   +-- vector_store.py      # Клиент Qdrant
+|   +-- services/
+|   |   +-- agent/
+|   |   |   +-- graph.py         # Определение графа LangGraph
+|   |   |   +-- state.py         # Схема состояния агента
+|   |   +-- llm/
+|   |       +-- ollama_client.py # Интеграция с Ollama
+|   |       +-- prompts.py       # Шаблоны промптов
+|   +-- tools/
+|       +-- sql_executor.py      # Инструмент выполнения SQL
+|
++-- tests/
+|   +-- test_agent.py            # Тесты узлов агента
+|   +-- test_db.py               # Тесты запросов к БД
+|
++-- main.py                      # Точка входа
++-- Dockerfile                   # Сборка образа приложения
++-- docker-compose.yml           # Оркестрация: app + postgres + qdrant
++-- entrypoint.sh                # Автозапуск "из коробки"
++-- requirements.txt             # Зависимости Python
++-- .env.example                 # Шаблон переменных окружения
 ```
 
 ---
