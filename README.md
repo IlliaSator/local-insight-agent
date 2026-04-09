@@ -214,10 +214,6 @@ The agent knows the real database structure via RAG — this eliminates typical 
 
 ---
 
-</div>
-
----
-
 <div align="center">
 
 # 🔍 InsightData Analyst
